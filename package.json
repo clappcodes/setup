@@ -11,7 +11,7 @@
     "lib"
   ],
   "scripts": {
-    "start": "node ./bin/index.js /Applications/Crawless28Nov.app/Contents/Resources"
+    "start": "node ./bin/index.js /Applications/Crawless28Nov.app"
   },
   "keywords": [],
   "author": "",
