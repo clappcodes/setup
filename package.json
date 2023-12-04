@@ -1,0 +1,22 @@
+{
+  "name": "@clapp/setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./lib/index.js",
+  "bin": {
+    "clapp-setup": "./bin/index.js"
+  },
+  "files": [
+    "bin",
+    "lib"
+  ],
+  "scripts": {
+    "start": "node ./bin/index.js /Applications/Crawless28Nov.app/Contents/Resources"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@electron/asar": "^3.2.8"
+  }
+}
