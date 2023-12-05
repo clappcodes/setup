@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/paths.ts"],
+  "sourcesContent": ["import * as fs from \"fs\";\nimport path from \"path\";\n\nexport async function symlink(appPath, libPath = \"app.dev/lib\") {\n\tif (!fs.existsSync(appPath)) {\n\t\tthrow new Error(`App not found at: ${appPath}`);\n\t}\n\t// @ts-ignore\n\tconst target = CLAPP_SRC_PATH;\n\tconst dest = path.resolve(appPath, \"Contents/Resources\", libPath);\n\tif (!fs.existsSync(dest)) {\n\t\tfs.mkdirSync(dest, { recursive: true });\n\t}\n\tconst linkPath = path.resolve(dest, path.dirname(target));\n\n\tif (!fs.existsSync(linkPath)) {\n\t\tfs.symlinkSync(target, linkPath, \"dir\");\n\t}\n\tconst isDirectory = fs.statSync(linkPath).isDirectory();\n\n\tconsole.log(\"result\", { target, linkPath, isDirectory });\n}\n"],
+  "mappings": ";;;;;;;;;;;;;;;;;;;;;;;;;;;;;;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,SAAoB;AACpB,kBAAiB;AAEjB,eAAsB,QAAQ,SAAS,UAAU,eAAe;AAC/D,MAAI,CAAI,cAAW,OAAO,GAAG;AAC5B,UAAM,IAAI,MAAM,qBAAqB,OAAO,EAAE;AAAA,EAC/C;AAEA,QAAM,SAAS;AACf,QAAM,OAAO,YAAAA,QAAK,QAAQ,SAAS,sBAAsB,OAAO;AAChE,MAAI,CAAI,cAAW,IAAI,GAAG;AACzB,IAAG,aAAU,MAAM,EAAE,WAAW,KAAK,CAAC;AAAA,EACvC;AACA,QAAM,WAAW,YAAAA,QAAK,QAAQ,MAAM,YAAAA,QAAK,QAAQ,MAAM,CAAC;AAExD,MAAI,CAAI,cAAW,QAAQ,GAAG;AAC7B,IAAG,eAAY,QAAQ,UAAU,KAAK;AAAA,EACvC;AACA,QAAM,cAAiB,YAAS,QAAQ,EAAE,YAAY;AAEtD,UAAQ,IAAI,UAAU,EAAE,QAAQ,UAAU,YAAY,CAAC;AACxD;",
+  "names": ["path"]
+}

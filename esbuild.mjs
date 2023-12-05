@@ -3,13 +3,11 @@ import path from 'path'
 import pkg from './package.json' assert { type: "json" }
 
 const arg = process.argv[2]
-const exports = Object.values(pkg.exports)
-    .map(file => file.replace('lib/', 'src/').replace(path.extname(file), '.ts'))
 
 console.log(`\n${pkg.name} v${pkg.version}\n`)
 
 const options = {
-    entryPoints: exports,
+    entryPoints: ["./src/*.ts"],
     bundle: true,
     sourcemap: true,
     outdir: './lib',

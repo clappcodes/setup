@@ -1,7 +1,7 @@
 {
   "name": "@clapp/setup",
-  "version": "1.0.0",
-  "description": "",
+  "version": "1.0.2",
+  "main": "./lib/main.js",
   "exports": {
     ".": "./lib/main.js",
     "./paths": "./lib/paths.js"
@@ -11,13 +11,15 @@
   },
   "files": [
     "bin",
-    "lib"
+    "lib",
+    "src"
   ],
   "scripts": {
     "esbuild:build": "node ./esbuild.mjs",
     "esbuild:watch": "node ./esbuild.mjs --watch",
     "node:watch": "node --enable-source-maps --watch lib/main.js",
-    "tsc:dts": "tsc --emitDeclarationOnly",
+    "tsc:dts": "tsc -d --emitDeclarationOnly",
+    "tsc:dts:watch": "tsc --emitDeclarationOnly --watch",
     "build": "npm run esbuild:build && npm run tsc:dts",
     "dev": "npm run esbuild:watch"
   },

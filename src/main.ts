@@ -13,20 +13,7 @@ import { exec } from "node:child_process";
 import path from "node:path";
 
 let index_html_file = "dist/ui/index.html";
-let cx_js_file = "../../../app.dev/lib/clapp.js";
-
-// if (process.argv.length < 3) {
-//     console.log('You need to specify the installation location. It needs to be the folder where app.asar is located.');
-//     console.log('E.g.:   node index.js /Applications/Crawless.app/Contents/Resources');
-//     process.exit(0);
-// }
-
-// const appDir = process.argv[2];
-module.paths.push(path.resolve(process.env.PWD, "../../"));
-
-import server from "@clapp/server";
-
-console.log("x", server);
+let cx_js_file = "../../../app.dev/lib/ext.js";
 
 console.log(module.paths);
 
