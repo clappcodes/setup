@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 
 const packageJSON = require('../package.json')
-const lib = require('../lib')
+const lib = require('../lib/main')
 
 if (process.argv.length < 3) {
     console.log('You need to specify the installation location. It needs to be the folder where app.asar is located.');

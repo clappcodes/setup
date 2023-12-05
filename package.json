@@ -2,21 +2,34 @@
   "name": "@clapp/setup",
   "version": "1.0.0",
   "description": "",
-  "main": "./lib/index.js",
+  "exports": {
+    ".": "./lib/main.js",
+    "./paths": "./lib/paths.js"
+  },
   "bin": {
-    "clapp-setup": "./bin/index.js"
+    "clapp-setup": "./bin/main.js"
   },
   "files": [
     "bin",
     "lib"
   ],
   "scripts": {
-    "start": "node ./bin/index.js /Applications/Crawless28Nov.app"
+    "esbuild:build": "node ./esbuild.mjs",
+    "esbuild:watch": "node ./esbuild.mjs --watch",
+    "node:watch": "node --enable-source-maps --watch lib/main.js",
+    "tsc:dts": "tsc --emitDeclarationOnly",
+    "build": "npm run esbuild:build && npm run tsc:dts",
+    "dev": "npm run esbuild:watch"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "@electron/asar": "^3.2.8"
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.3",
+    "esbuild": "0.19.8",
+    "typescript": "^5.3.2"
   }
 }
