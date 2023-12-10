@@ -3,7 +3,7 @@ import path from "path";
 
 export function symlink(appPath: string, libPath = "app.dev/lib") {
 	if (!fs.existsSync(appPath)) {
-		throw new Error(`App not found at: ${appPath}`);
+		throw new Error(`!App not found at: ${appPath}`);
 	}
 	// @ts-ignore
 	const target = CLAPP_SRC_PATH;

@@ -1,18 +1,20 @@
 {
 	"compilerOptions": {
-		"target": "esnext",
+		"target": "ESNext",
 		"module": "NodeNext",
 		"moduleResolution": "NodeNext",
 		"sourceMap": true,
 		"outDir": "lib",
+		"declarationDir": "types",
 		// draft
 		"declaration": true,
 		"declarationMap": true,
 		"allowSyntheticDefaultImports": true,
 		"skipLibCheck": true,
 		"forceConsistentCasingInFileNames": true,
-		"baseUrl": ".",
-		"paths": {},
+		"allowJs": true,
+		// "baseUrl": ".",
+		// "paths": {},
 		// Highly recommended TS configurations to match behavior with esbuild
 		// https://esbuild.github.io/content-types/#typescript
 		"isolatedModules": true,

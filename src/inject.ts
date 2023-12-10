@@ -11,10 +11,15 @@ import path from "node:path";
 /**
  * Unpack app.asar & inject module script tag in index.html
  * @param appPath Application path (ex: /Applications/Crawless.app)
- * @param libFile Relative js file path (ex: app.dev/lib/ext.js)
- * @returns {string} `/Applications/Crawless.app/Contents/Resources/app.dev/lib/ext.js`
+ * @param modFile Absolute js module path
+ * @param globals Globals key value map
+ * @returns {Promise<string>}
  */
-export default function inject(appPath: string, libFile: string) {
+export default async function inject(
+	appPath: string,
+	modFile: string,
+	globals?: object
+) {
 	return new Promise<string>((resolve, reject) => {
 		const resPath = path.resolve(appPath, "Contents/Resources/");
 
@@ -23,7 +28,7 @@ export default function inject(appPath: string, libFile: string) {
 			"app.asar/",
 			"dist/ui/index.html"
 		);
-		const script_src = path.join(resPath, libFile);
+		const script_src = modFile; //path.join(resPath, modFile);
 		const script_type = "module";
 
 		if (!existsSync(resPath)) {
@@ -59,7 +64,11 @@ export default function inject(appPath: string, libFile: string) {
 			console.log(`Processing ${index_html_file}...`);
 			contents = contents.replace(
 				/<title>Crawless<\/title>/,
-				`<title>Crawless (dev)<\/title>\n<script type="${script_type}" src="${script_src}"></script>`
+				`<title>Crawless (dev)<\/title>
+				<script>globalThis.CLAPP = ${JSON.stringify(
+					Object.assign(globals || {}, { SCRIPT_SRC: script_src })
+				)}</script>
+				<script type="${script_type}" src="${script_src}"></script>`
 			);
 			// contents = contents.replace(/script-src/, "script-src blob: 'unsafe-eval'")
 			writeFileSync(filePath, contents);

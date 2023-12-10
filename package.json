@@ -1,19 +1,15 @@
 {
   "name": "@clapp/setup",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "./lib/main.js",
   "exports": {
-    ".": "./lib/main.js",
-    "./paths": "./lib/paths.js"
+    "./load": "./lib/load.js",
+    "./paths": "./lib/paths.js",
+    "./esbuild": "./lib/esbuild.js"
   },
   "bin": {
-    "clapp-setup": "./bin/main.js"
+    "clapp": "./bin/main.js"
   },
-  "files": [
-    "bin",
-    "lib",
-    "src"
-  ],
   "scripts": {
     "esbuild:build": "node ./esbuild.mjs",
     "esbuild:watch": "node ./esbuild.mjs --watch",
@@ -27,7 +23,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@electron/asar": "^3.2.8"
+    "@electron/asar": "^3.2.8",
+    "@clapp/init": "file:../init"
   },
   "devDependencies": {
     "@types/node": "^20.10.3",
